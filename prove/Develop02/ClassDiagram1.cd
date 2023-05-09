@@ -10,15 +10,22 @@
   <Class Name="Journal">
     <Position X="4" Y="1.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAGgAAAAAAAAAgAAAAgAAAAAAAAAAAAAAAAAAAAgAA=</HashCode>
-      <FileName>Program.cs</FileName>
+      <HashCode>AAACgAAAAAAAAAkAAAAAAAAAAAAAAAAAAAAAAAAAgAA=</HashCode>
+      <FileName>Journal.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Entry">
     <Position X="6.25" Y="1.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAEAAAAAAAAAEIAAAAAAAAAAAAAAAAAAAAQAAAAA=</HashCode>
-      <FileName>Program.cs</FileName>
+      <HashCode>gAAAAAAAAAAAACAEBAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entry.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PromptHandler">
+    <Position X="8.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAgAQAAAAAAAAAAAAAAAAAAAAIAAAAAAAA=</HashCode>
+      <FileName>PromptHandler.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Font Name="Segoe UI" Size="9" />

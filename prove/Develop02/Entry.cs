@@ -1,18 +1,25 @@
 public class Entry
 {
-    private string response;
-    private string prompt;
-    private string date;
+    private string _response;
+    private string _prompt;
+    private string _date;
 
     public Entry(string response, string prompt)
     {
-        this.response = response;
-        this.prompt = prompt;
-        date = DateTime.Now.ToString("yyyy-MM-dd");
+        _response = response;
+        _prompt = prompt;
+        _date = DateTime.Now.ToString("yyyy-MM-dd");
+    }
+
+    public Entry(string response, string prompt, string date)
+    {
+        _response = response;
+        _prompt = prompt;
+        _date = date;
     }
 
     public override string ToString()
     {
-        return date + "," + prompt + "," + response;
+        return _date + " | " + _prompt + " | " + _response;
     }
 }
