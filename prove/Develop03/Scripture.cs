@@ -8,11 +8,11 @@ namespace Develop03
 {
     public class Scripture
     {
-        private string reference;
+        private ScriptureReference reference;
         private List<Word> words;
         private Random random;
 
-        public Scripture(string reference, string text)
+        public Scripture(ScriptureReference reference, string text)
         {
             this.reference = reference;
             this.words = ParseWords(text);

@@ -25,11 +25,29 @@ namespace Develop03
                 string[] parts = line.Split(';');
                 if (parts.Length == 2)
                 {
-                    string reference = parts[0].Trim();
+                    string referenceString = parts[0].Trim();
                     string text = parts[1].Trim();
+
+                    ScriptureReference reference = ParseScriptureReference(referenceString);
                     scriptures.Add(new Scripture(reference, text));
                 }
             }
+        }
+
+        private ScriptureReference ParseScriptureReference(string referenceString)
+        {
+            string[] parts = referenceString.Split(' ');
+            if (parts.Length == 2)
+            {
+                string book = parts[0].Trim();
+                string[] chapterVerse = parts[1].Split(':');
+                if (chapterVerse.Length == 2 && int.TryParse(chapterVerse[0].Trim(), out int chapter) && int.TryParse(chapterVerse[1].Trim(), out int verse))
+                {
+                    return new ScriptureReference(book, chapter, verse);
+                }
+            }
+
+            throw new ArgumentException("Invalid scripture reference format: " + referenceString);
         }
 
         public Scripture GetRandomScripture()
