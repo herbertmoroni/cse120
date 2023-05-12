@@ -8,13 +8,13 @@ namespace Develop03
 {
     public class ScriptureLibrary
     {
-        private List<Scripture> scriptures;
-        private Random random;
+        private List<Scripture> _scriptures;
+        private Random _random;
 
         public ScriptureLibrary()
         {
-            this.scriptures = new List<Scripture>();
-            this.random = new Random();
+            _scriptures = new List<Scripture>();
+            _random = new Random();
         }
 
         public void LoadScripturesFromFiles(string filePath)
@@ -29,7 +29,7 @@ namespace Develop03
                     string text = parts[1].Trim();
 
                     ScriptureReference reference = ParseScriptureReference(referenceString);
-                    scriptures.Add(new Scripture(reference, text));
+                    _scriptures.Add(new Scripture(reference, text));
                 }
             }
         }
@@ -52,11 +52,11 @@ namespace Develop03
 
         public Scripture GetRandomScripture()
         {
-            if (scriptures.Count == 0)
+            if (_scriptures.Count == 0)
                 throw new InvalidOperationException("No scriptures loaded in the library.");
 
-            int index = random.Next(scriptures.Count);
-            return scriptures[index];
+            int index = _random.Next(_scriptures.Count);
+            return _scriptures[index];
         }
     }
 }
