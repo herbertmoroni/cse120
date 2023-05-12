@@ -2,6 +2,8 @@ using System.Text.Json.Serialization;
 
 public class Entry
 {
+public string _response;
+
     [JsonPropertyName("response")]
     public string Response { get; set; }
 
