@@ -8,15 +8,15 @@ namespace Develop03
 {
     public class Scripture
     {
-        private ScriptureReference reference;
-        private List<Word> words;
-        private Random random;
+        private ScriptureReference _reference;
+        private List<Word> _words;
+        private Random _random;
 
         public Scripture(ScriptureReference reference, string text)
         {
-            this.reference = reference;
-            this.words = ParseWords(text);
-            this.random = new Random();
+            _reference = reference;
+            _words = ParseWords(text);
+            _random = new Random();
         }
 
         private List<Word> ParseWords(string text)
@@ -32,8 +32,8 @@ namespace Develop03
 
         public string GetDisplayText()
         {
-            string displayText = reference + "\n\n";
-            foreach (Word word in words)
+            string displayText = _reference + "\n\n";
+            foreach (Word word in _words)
             {
                 displayText += word.GetVisibleText() + " ";
             }
@@ -45,14 +45,14 @@ namespace Develop03
             List<Word> visibleWords = GetVisibleWords();
             if (visibleWords.Count > 0)
             {
-                int index = random.Next(visibleWords.Count);
+                int index = _random.Next(visibleWords.Count);
                 visibleWords[index].Hide();
             }
         }
 
         public bool AllWordsHidden()
         {
-            foreach (Word word in words)
+            foreach (Word word in _words)
             {
                 if (!word.IsHidden())
                     return false;
@@ -63,7 +63,7 @@ namespace Develop03
         private List<Word> GetVisibleWords()
         {
             List<Word> visibleWords = new List<Word>();
-            foreach (Word word in words)
+            foreach (Word word in _words)
             {
                 if (!word.IsHidden())
                     visibleWords.Add(word);

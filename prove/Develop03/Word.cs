@@ -8,31 +8,31 @@ namespace Develop03
 {
     public class Word
     {
-        private string text;
-        private bool hidden;
+        private string _text;
+        private bool _hidden;
 
         public Word(string text)
         {
-            this.text = text;
-            this.hidden = false;
+            _text = text;
+            _hidden = false;
         }
 
         public string GetVisibleText()
         {
-            if (hidden)
-                return new string('_', text.Length);
+            if (_hidden)
+                return new string('_', _text.Length);
             else
-                return text;
+                return _text;
         }
 
         public void Hide()
         {
-            hidden = true;
+            _hidden = true;
         }
 
         public bool IsHidden()
         {
-            return hidden;
+            return _hidden;
         }
     }
 }
