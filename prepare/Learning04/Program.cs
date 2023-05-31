@@ -6,6 +6,10 @@ namespace Learning04
     {
         static void Main(string[] args)
         {
+            //Tessting base
+            Assignment assignment = new Assignment("Samuel Bennett", "Multiplication");
+            Console.WriteLine(assignment);
+
             // Testing MathAssignment
             MathAssignment mathAssignment = new MathAssignment("Samuel Bennett", "Multiplication", "7.3", "3-10, 20-21");
             Console.WriteLine(mathAssignment.GetSummary());
