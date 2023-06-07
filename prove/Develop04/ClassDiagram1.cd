@@ -7,10 +7,10 @@
       <FileName>Program.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="MindfulnessActivity">
+  <Class Name="Activity">
     <Position X="6.25" Y="3.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAhAAIAACAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAhAAAAACAAAAAAABAAABAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Program.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -24,14 +24,21 @@
   <Class Name="ReflectionActivity">
     <Position X="10.5" Y="6.5" Width="3.25" />
     <TypeIdentifier>
-      <HashCode>AAAEAAAAACAAAAAAAQAAAAAAAAQAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAACAAAQAAAQAAAAAACAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Program.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="ListingActivity">
     <Position X="2.75" Y="6.5" Width="3" />
     <TypeIdentifier>
-      <HashCode>AAAEAAAAACAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAACAAAQAAAQAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Program.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GratitudeJournalingActivity">
+    <Position X="6.5" Y="8.5" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAQAAAQAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Program.cs</FileName>
     </TypeIdentifier>
   </Class>

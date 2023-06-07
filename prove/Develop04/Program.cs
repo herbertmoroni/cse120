@@ -15,7 +15,8 @@ public class Program
         Console.WriteLine("1. Breathing Activity");
         Console.WriteLine("2. Reflection Activity");
         Console.WriteLine("3. Listing Activity");
-        Console.WriteLine("4. Exit");
+        Console.WriteLine("4. Gratitude Journaling Activity");
+        Console.WriteLine("5. Exit");
         Console.Write("Enter your choice: ");
         string choice = Console.ReadLine();
 
@@ -34,6 +35,10 @@ public class Program
                 listingActivity.StartActivity();
                 break;
             case "4":
+                GratitudeJournalingActivity gratitudeJournalingActivity = new GratitudeJournalingActivity();
+                gratitudeJournalingActivity.StartActivity();
+                break;
+            case "5":
                 Environment.Exit(0);
                 break;
             default:
@@ -44,7 +49,7 @@ public class Program
     }
 }
 
-public abstract class MindfulnessActivity
+public abstract class Activity
 {
     protected int _duration;
 
@@ -53,9 +58,12 @@ public abstract class MindfulnessActivity
     protected void ShowStartingMessage(string activityName, string description)
     {
         Console.WriteLine($"Starting {activityName}...");
+        Console.WriteLine();
         Console.WriteLine(description);
+        Console.WriteLine();
         Console.Write("Enter the duration (in seconds): ");
         _duration = int.Parse(Console.ReadLine());
+        Console.WriteLine();
         Console.WriteLine("Preparing to begin...");
         Pause(3);
     }
@@ -63,7 +71,9 @@ public abstract class MindfulnessActivity
     protected void ShowFinishingMessage(string activityName)
     {
         Console.WriteLine($"Good job! You have completed the {activityName}.");
+        Console.WriteLine();
         Console.WriteLine($"Duration: {_duration} seconds");
+        Console.WriteLine();
         Pause(3);
     }
 
@@ -71,14 +81,15 @@ public abstract class MindfulnessActivity
     {
         for (int i = seconds; i > 0; i--)
         {
-            Console.Write(".");
+            Console.Write($"{i} ");
+
             System.Threading.Thread.Sleep(1000);
         }
         Console.WriteLine();
     }
 }
 
-class BreathingActivity : MindfulnessActivity
+public class BreathingActivity : Activity
 {
     protected override void Start()
     {
@@ -87,11 +98,14 @@ class BreathingActivity : MindfulnessActivity
         Console.WriteLine("Let's begin...");
         for (int i = 0; i < _duration; i += 2)
         {
-            Console.WriteLine("Breathe in...");
-            Pause(1);
+            Console.WriteLine("Breathe in.");
+            Pause(4);
 
-            Console.WriteLine("Breathe out...");
-            Pause(1);
+            Console.WriteLine("Hold your breath.");
+            Pause(4);
+
+            Console.WriteLine("Breathe out.");
+            Pause(4);
         }
 
         ShowFinishingMessage("Breathing Activity");
@@ -105,7 +119,7 @@ class BreathingActivity : MindfulnessActivity
     }
 }
 
-class ReflectionActivity : MindfulnessActivity
+public class ReflectionActivity : Activity
 {
     private List<string> _prompts = new List<string>
     {
@@ -159,7 +173,7 @@ class ReflectionActivity : MindfulnessActivity
     }
 }
 
-class ListingActivity : MindfulnessActivity
+public class ListingActivity : Activity
 {
     private List<string> _prompts = new List<string>
     {
@@ -198,3 +212,39 @@ class ListingActivity : MindfulnessActivity
 }
 
 
+public class GratitudeJournalingActivity : Activity
+{
+    private List<string> _prompts = new List<string>
+    {
+        "What are three things you are grateful for today?",
+        "Who are the people in your life that you appreciate the most? Write about why you are grateful for them.",
+        "Think about a recent accomplishment or positive experience. Reflect on the aspects of it that you are grateful for.",
+        "Write about a challenge or difficulty you faced and find something positive or a lesson you learned from it.",
+        "Reflect on a natural beauty or scene that you find awe-inspiring. Describe it and express your gratitude for it.",
+        "Think of a small act of kindness someone has done for you recently. Write about how it made you feel and why you are grateful for it."
+    };
+
+    protected override void Start()
+    {
+        ShowStartingMessage("Gratitude Journaling Activity", "This activity will help you cultivate gratitude by reflecting on things, experiences, and people you are grateful for in your life.");
+
+        Console.WriteLine("Let's begin...");
+        Random random = new Random();
+
+        for (int i = 0; i < _duration; i += 5)
+        {
+            string prompt = _prompts[random.Next(_prompts.Count)];
+            Console.WriteLine(prompt);
+            Pause(5);
+        }
+
+        ShowFinishingMessage("Gratitude Journaling Activity");
+    }
+
+    public void StartActivity()
+    {
+        Start();
+        Console.WriteLine();
+        Program.ShowMenu();
+    }
+}
