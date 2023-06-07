@@ -35,7 +35,7 @@ public class Program
                 listingActivity.StartActivity();
                 break;
             case "4":
-                GratitudeJournalingActivity gratitudeJournalingActivity = new GratitudeJournalingActivity();
+                GratitudeJournalingActivity gratitudeJournalingActivity = new GratitudeJournalingActivity(); //This was added to exceed requirement
                 gratitudeJournalingActivity.StartActivity();
                 break;
             case "5":
@@ -81,9 +81,12 @@ public abstract class Activity
     {
         for (int i = seconds; i > 0; i--)
         {
-            Console.Write($"{i} ");
-
-            System.Threading.Thread.Sleep(1000);
+            string spinner = "|/-\\";
+            foreach (char c in spinner)
+            {
+                Console.Write($"\r{c} Pausing for {i} seconds...");
+                System.Threading.Thread.Sleep(250);
+            }
         }
         Console.WriteLine();
     }
@@ -96,7 +99,7 @@ public class BreathingActivity : Activity
         ShowStartingMessage("Breathing Activity", "This activity will help you relax by walking you through breathing in and out slowly. Clear your mind and focus on your breathing.");
 
         Console.WriteLine("Let's begin...");
-        for (int i = 0; i < _duration; i += 2)
+        for (int i = 0; i < 2; i += 2)
         {
             Console.WriteLine("Breathe in.");
             Pause(4);
