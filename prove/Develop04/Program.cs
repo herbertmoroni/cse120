@@ -99,7 +99,7 @@ public class BreathingActivity : Activity
         ShowStartingMessage("Breathing Activity", "This activity will help you relax by walking you through breathing in and out slowly. Clear your mind and focus on your breathing.");
 
         Console.WriteLine("Let's begin...");
-        for (int i = 0; i < 2; i += 2)
+        for (int i = 0; i < 2; i += 12)
         {
             Console.WriteLine("Breathe in.");
             Pause(4);
