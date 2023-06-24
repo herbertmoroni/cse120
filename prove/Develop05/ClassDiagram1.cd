@@ -1,48 +1,45 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="FullSignature">
-  <Class Name="Program">
-    <Position X="0.5" Y="0.5" Width="2.25" />
+  <Class Name="ChecklistGoal" Collapsed="true">
+    <Position X="2.75" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAABAAAAAAAYEAAAAAAQAAgAAAAAAAACAAAAAAAA=</HashCode>
+      <FileName>ChecklistGoal.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EternalGoal" Collapsed="true">
+    <Position X="5.25" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>EternalGoal.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Goal" Collapsed="true">
+    <Position X="5.5" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABAAIAAAAAAgAAIkAAAAAASAAAAAAAAAAAAgAAAAAAA=</HashCode>
+      <FileName>Goal.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Program" Collapsed="true">
+    <Position X="10.25" Y="0.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
       <FileName>Program.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Goal">
-    <Position X="6.25" Y="1" Width="1.75" />
-    <Compartments>
-      <Compartment Name="Properties" Collapsed="true" />
-    </Compartments>
+  <Class Name="SimpleGoal" Collapsed="true">
+    <Position X="9.5" Y="2.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAIAAAAAAAAAIAAAAAAAUAAAAAABAAAAAAAAAAAAA=</HashCode>
-      <FileName>Program.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>SimpleGoal.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="SimpleGoal">
-    <Position X="6" Y="4" Width="2.75" />
+  <Class Name="User">
+    <Position X="1" Y="3.75" Width="4" />
     <TypeIdentifier>
-      <HashCode>AAAAIAAAAAAAgAAAgAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Program.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="EternalGoal">
-    <Position X="9" Y="4.5" Width="3.75" />
-    <TypeIdentifier>
-      <HashCode>AAAAIAAAAAAAgAAAgAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Program.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="ChecklistGoal">
-    <Position X="9" Y="0.5" Width="5.5" />
-    <TypeIdentifier>
-      <HashCode>AAEAIAACACAAgAAAgAAAAAAAAAAAABAAAAABAAAgAAQ=</HashCode>
-      <FileName>Program.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="QuestProgram">
-    <Position X="0.5" Y="1.75" Width="5.25" />
-    <TypeIdentifier>
-      <HashCode>ABAAAAAAAIAAAgAAAACAAAEAABAAAAAAAIAAIAAAAAA=</HashCode>
-      <FileName>Program.cs</FileName>
+      <HashCode>AAgAoIAAAIAAAAAAAAAAAAQAAAAAAAAAAACAIAAAIAA=</HashCode>
+      <FileName>User.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Font Name="Segoe UI" Size="9" />

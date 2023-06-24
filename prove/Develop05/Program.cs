@@ -1,239 +1,100 @@
-using System;
-
-class Program
+public class Program
 {
-    static void Main(string[] args)
+    public static void Main(string[] args)
     {
-        SimpleGoal test = new SimpleGoal("name1", 1000);
-        test.Name = "simple1";
-
-        Goal goal = test;
-
-
-        QuestProgram program = new QuestProgram();
-
-        program.CreateSimpleGoal("Run a marathon", 1000);
-        program.CreateEternalGoal("Read scriptures", 100);
-        program.CreateChecklistGoal("Attend the temple", 50, 10, 500);
-
-        program.DisplayGoals();
-
-    }
-}
-
-public class Goal
-{
-    private string _name;
-    private bool _completed;
-
-    public string Name
-    {
-        get { return _name; }
-        set { _name = value; }
-    }
-
-    public bool Completed
-    {
-        get { return _completed; }
-        set { _completed = value; }
-    }
-
-    public Goal(string name)
-    {
-        _name = name;
-        _completed = false;
-    }
-
-    public virtual int GetPoints()
-    {
-        return 0;
-    }
-
-    public virtual bool IsCompleted()
-    {
-        return _completed;
-    }
-}
-
-public class SimpleGoal : Goal
-{
-    private int _points;
-
-    public int Points
-    {
-        get { return _points; }
-        set { _points = value; }
-    }
-
-    public SimpleGoal(string name, int points) : base(name)
-    {
-        _points = points;
-    }
-
-    public override int GetPoints()
-    {
-        return _points;
-    }
-}
-
-public class EternalGoal : Goal
-{
-    private int _points;
-
-    public int Points
-    {
-        get { return _points; }
-        set { _points = value; }
-    }
-
-    public EternalGoal(string name, int points) : base(name)
-    {
-        _points = points;
-    }
-
-    public override int GetPoints()
-    {
-        return _points;
-    }
-}
-
-public class ChecklistGoal : Goal
-{
-    private int _points;
-    private int _targetCount;
-    private int _currentCount;
-    private int _bonusPoints;
-
-    public int Points
-    {
-        get { return _points; }
-        set { _points = value; }
-    }
-
-    public int TargetCount
-    {
-        get { return _targetCount; }
-        set { _targetCount = value; }
-    }
-
-    public int CurrentCount
-    {
-        get { return _currentCount; }
-        set { _currentCount = value; }
-    }
-
-    public int BonusPoints
-    {
-        get { return _bonusPoints; }
-        set { _bonusPoints = value; }
-    }
-
-    public ChecklistGoal(string name, int points, int targetCount, int bonusPoints) : base(name)
-    {
-        _points = points;
-        _targetCount = targetCount;
-        _currentCount = 0;
-        _bonusPoints = bonusPoints;
-    }
-
-    public override int GetPoints()
-    {
-        return _points;
-    }
-
-    public override bool IsCompleted()
-    {
-        return _currentCount >= _targetCount;
-    }
-}
-
-public class QuestProgram
-{
-    private List<Goal> _goals;
-    private int _score;
-
-    public QuestProgram()
-    {
-        _goals = new List<Goal>();
-        _score = 0;
-    }
-
-    public void CreateSimpleGoal(string name, int points)
-    {
-        Goal goal = new SimpleGoal(name, points);
-        _goals.Add(goal);
-    }
-
-    public void CreateEternalGoal(string name, int points)
-    {
-        Goal goal = new EternalGoal(name, points);
-        _goals.Add(goal);
-    }
-
-    public void CreateChecklistGoal(string name, int points, int targetCount, int bonusPoints)
-    {
-        Goal goal = new ChecklistGoal(name, points, targetCount, bonusPoints);
-        _goals.Add(goal);
-    }
-
-    public void RecordEvent(int goalIndex)
-    {
-        Goal goal = _goals[goalIndex];
-        if (!goal.Completed)
+        User user;
+        const string filename = "userdata.json";
+        if (File.Exists(filename))
         {
-            goal.Completed = true;
-
-            if (goal is SimpleGoal simpleGoal)
-            {
-                _score += simpleGoal.Points;
-            }
-            else if (goal is EternalGoal eternalGoal)
-            {
-                _score += eternalGoal.Points;
-            }
-            else if (goal is ChecklistGoal checklistGoal)
-            {
-                checklistGoal.CurrentCount++;
-                _score += checklistGoal.Points;
-
-                if (checklistGoal.CurrentCount >= checklistGoal.TargetCount)
-                {
-                    _score += checklistGoal.BonusPoints;
-                }
-            }
+            user = User.Load(filename);
+            Console.WriteLine($"Welcome back, {user.Name}! Here's a quick summary:");
+            Console.WriteLine($"Current Score: {user.TotalScore}");
+            Console.WriteLine($"Number of Goals: {user.Goals.Count}");
+            Console.WriteLine("User data loaded from file.");
         }
-    }
-
-
-    public void DisplayScore()
-    {
-        Console.WriteLine("Current Score: " + _score);
-    }
-
-    public void DisplayGoals()
-    {
-        for (int i = 0; i < _goals.Count; i++)
+        else
         {
-            Goal goal = _goals[i];
-            string completedStatus = goal.Completed ? "[X]" : "[ ]";
-            if (goal is SimpleGoal simpleGoal)
+            Console.WriteLine("Welcome to Eternal Quest!");
+            Console.WriteLine("Please enter your name:");
+            string name = Console.ReadLine();
+            user = new User(name);
+            Console.WriteLine($"Hello, {user.Name}! Let's start setting some goals.");
+        }
+
+        bool runProgram = true;
+        while (runProgram)
+        {
+            Console.WriteLine("1. Add Goal");
+            Console.WriteLine("2. Complete Goal");
+            Console.WriteLine("3. View Goals");
+            Console.WriteLine("4. View Score");
+            Console.WriteLine("5. Save and Exit");
+
+            int option = Convert.ToInt32(Console.ReadLine());
+
+            switch (option)
             {
-                Console.WriteLine($"{i + 1}. {completedStatus} {goal.Name} - Points: {simpleGoal.Points}");
-            }
-            else if (goal is EternalGoal eternalGoal)
-            {
-                Console.WriteLine($"{i + 1}. {completedStatus} {goal.Name} - Points: {eternalGoal.Points}");
-            }
-            else if (goal is ChecklistGoal checklistGoal)
-            {
-                string progress = $"Completed {checklistGoal.CurrentCount}/{checklistGoal.TargetCount} times";
-                Console.WriteLine($"{i + 1}. {completedStatus} {goal.Name} - {progress} - Points: {checklistGoal.Points}");
-            }
-            else
-            {
-                Console.WriteLine($"{i + 1}. {completedStatus} {goal.Name}");
+                case 1:
+                    Console.WriteLine("Select Goal Type: 1. Simple Goal, 2. Eternal Goal, 3. Checklist Goal");
+                    int goalType = Convert.ToInt32(Console.ReadLine());
+                    Console.WriteLine("Enter Goal Name:");
+                    string goalName = Console.ReadLine();
+                    Console.WriteLine("Enter Goal Description:");
+                    string goalDescription = Console.ReadLine();
+                    Console.WriteLine("Enter Goal Value:");
+                    int goalValue = Convert.ToInt32(Console.ReadLine());
+                    if (goalType == 3)
+                    {
+                        Console.WriteLine("Enter Goal Count:");
+                        int goalCount = Convert.ToInt32(Console.ReadLine());
+                        Console.WriteLine("Enter Goal Bonus:");
+                        int goalBonus = Convert.ToInt32(Console.ReadLine());
+                        user.AddGoal(new ChecklistGoal(goalName, goalDescription, goalValue, goalCount, goalBonus));
+                    }
+                    else if (goalType == 2)
+                    {
+                        user.AddGoal(new EternalGoal(goalName, goalDescription, goalValue));
+                    }
+                    else
+                    {
+                        user.AddGoal(new SimpleGoal(goalName, goalDescription, goalValue));
+                    }
+                    Console.WriteLine("\nGoal Added Successfully.\n");
+                    break;
+                case 2:
+                    Console.WriteLine("Select a goal to complete from the list below by typing its number:\n");
+                    for (int i = 0; i < user.Goals.Count; i++)
+                    {
+                        Console.WriteLine($"{i + 1}. {user.Goals[i]}");
+                    }
+                    Console.WriteLine();
+
+                    int goalIndexToComplete = Convert.ToInt32(Console.ReadLine()) - 1; // subtract 1 because list is zero-indexed
+                    if (goalIndexToComplete >= 0 && goalIndexToComplete < user.Goals.Count)
+                    {
+                        int pointsEarned = user.CompleteGoal(goalIndexToComplete);
+                        Console.WriteLine($"You've completed the goal '{user.Goals[goalIndexToComplete].Name}' and earned {pointsEarned} points! Congratulations!\n");
+                    }
+                    else
+                    {
+                        Console.WriteLine("Invalid selection. Please make sure to enter a valid number from the list.\n");
+                    }
+                    break;
+                case 3:
+                    for (int i = 0; i < user.Goals.Count; i++)
+                    {
+                        Console.WriteLine($"{i + 1}. {user.Goals[i]}");
+                    }
+                    break;
+                case 4:
+                    Console.WriteLine($"\nTotal Score: {user.TotalScore}\n");
+                    break;
+                case 5:
+                    user.Save(filename);
+                    Console.WriteLine("\nUser data saved to file.\n");
+                    runProgram = false;
+                    break;
             }
         }
     }
 }
-
