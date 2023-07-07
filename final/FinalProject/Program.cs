@@ -9,7 +9,7 @@ public class Program
     public static void Main()
     {
         // Example usage
-        User user = new User("John Doe");
+        User user = new User("Moroni");
         Portfolio portfolio = new Portfolio();
 
         Wallet wallet1 = new Wallet("Dividend Growth");
