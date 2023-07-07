@@ -59,26 +59,26 @@
 
     private void AddStock()
     {
-        // Logic to add a stock to the portfolio
+        throw new NotImplementedException();
     }
 
     private void UpdateStockPrice()
     {
-        // Logic to update the price of a stock
+        throw new NotImplementedException();
     }
 
     private void UpdateDividendData()
     {
-        // Logic to update dividend data for a stock
+        throw new NotImplementedException();
     }
 
     private void ViewDividendPerformance()
     {
-        // Logic to view dividend performance for a stock
+        throw new NotImplementedException();
     }
 
     private void GenerateReports()
     {
-        // Logic to generate reports for the portfolio
+        throw new NotImplementedException();
     }
 }
