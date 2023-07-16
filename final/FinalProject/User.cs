@@ -1,31 +1,37 @@
-﻿public class User
+﻿using Newtonsoft.Json;
+
+public class User
 {
-    private List<Portfolio> _portfolios;
+    private Portfolio _portfolio;
     private string _name;
 
     public User(string name)
     {
-        _portfolios = new List<Portfolio>();
+        _portfolio = new Portfolio();
         _name = name;
     }
 
-    public void AddPortfolio(Portfolio portfolio)
+    public Portfolio Portfolio
     {
-        _portfolios.Add(portfolio);
+        get { return _portfolio; }
+        set { _portfolio = value; }
     }
 
-    public void RemovePortfolio(Portfolio portfolio)
+    public void SavePortfolio(string fileName)
     {
-        _portfolios.Remove(portfolio);
-    }
-
-    public decimal CalculateTotalPortfolioValue()
-    {
-        decimal totalValue = 0;
-        foreach (Portfolio portfolio in _portfolios)
+        string jsonString = JsonConvert.SerializeObject(_portfolio, Formatting.Indented, new JsonSerializerSettings
         {
-            totalValue += portfolio.CalculatePortfolioValue();
-        }
-        return totalValue;
+            TypeNameHandling = TypeNameHandling.Auto
+        });
+        File.WriteAllText(fileName, jsonString);
+    }
+
+    public void OpenPortfolio(string fileName)
+    {
+        string jsonString = File.ReadAllText(fileName);
+        _portfolio = JsonConvert.DeserializeObject<Portfolio>(jsonString, new JsonSerializerSettings
+        {
+            TypeNameHandling = TypeNameHandling.Auto
+        });
     }
 }

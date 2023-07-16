@@ -1,15 +1,8 @@
 ﻿public class DividendPayment
 {
-    private Stock _stock;
     private DateTime _paymentDate;
     private decimal _amount;
-    private int _numberOfStocks;
-
-    public Stock Stock
-    {
-        get { return _stock; }
-        set { _stock = value; }
-    }
+    private decimal _numberOfStocks;
 
     public DateTime PaymentDate
     {
@@ -23,7 +16,7 @@
         set { _amount = value; }
     }
 
-    public int NumberOfStocks
+    public decimal NumberOfStocks
     {
         get { return _numberOfStocks; }
         set { _numberOfStocks = value; }

@@ -1,0 +1,11 @@
+﻿Symbol,CompanyName,Quantity,PurchasePrice,CurrentPrice,DividendYeild,StockType
+ITSA4,Itausa,4200,7.68 ,9.63 ,6.74,Brazilian
+BRSR6,Banrisul,4000,10.62 ,14.68 ,6.47,Brazilian
+AESB3,AES Brasil,4100,8.43 ,11.80 ,3.56,Brazilian
+TAEE4,Taesa,1500,9.05 ,12.13 ,9.07,Brazilian
+TRPL4,Transmissora Paulista,2400,18.14 ,25.02 ,7.03,Brazilian
+BBSE3,BB Seguridade,2300,17.11 ,30.44 ,7.20,Brazilian
+TASA3,Taurus,1400,12.94 ,14.77 ,11.51,Brazilian
+ENB,Enbridge,200,35.91 ,36.78 ,7.07,American
+BDORY,Banco Brasil,550,6.43 ,10.05 ,9.12,American
+VZ,Verizon,20,29.81 ,34.01 ,7.67,American

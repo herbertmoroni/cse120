@@ -12,19 +12,26 @@ public class Program
         User user = new User("Moroni");
         Portfolio portfolio = new Portfolio();
 
-        Wallet wallet1 = new Wallet("Dividend Growth");
-        BrazilianStock brazilianStock1 = new BrazilianStock("ITSA4", "Brazilian Stock 1");
-        wallet1.AddStock(brazilianStock1);
-
-        Wallet wallet2 = new Wallet("Growth");
-        AmericanStock americanStock1 = new AmericanStock("LUMN", "American Stock 1");
-        wallet2.AddStock(americanStock1);
-
-        portfolio.AddWallet(wallet1);
-        portfolio.AddWallet(wallet2);
-        user.AddPortfolio(portfolio);
+       
+        portfolio.AddWallet(LoadStockFromCsv("StockDataDividends.csv"));
+        //portfolio.AddWallet(wallet2);
+        user.Portfolio = portfolio;
 
         Menu menu = new Menu(user);
         menu.Run();
+    }
+
+    private static Wallet LoadStockFromCsv(string fileName)
+    {
+        CsvReader csvReader = new CsvReader();
+        List<Stock> stocks = csvReader.ReadCsvFile(fileName);
+
+        Wallet dividendsWallet = new Wallet("Dividends");
+        foreach (Stock stock in stocks)
+        {
+            dividendsWallet.AddStock(stock);
+        }
+
+        return dividendsWallet;
     }
 }

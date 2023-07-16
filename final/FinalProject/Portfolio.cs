@@ -17,6 +17,11 @@
         _wallets.Remove(wallet);
     }
 
+    public List<Wallet> GetWallets()
+    {
+        return _wallets;
+    }
+
     public decimal CalculatePortfolioValue()
     {
         decimal portfolioValue = 0;
@@ -25,5 +30,16 @@
             portfolioValue += wallet.CalculateTotalValue();
         }
         return portfolioValue;
+    }
+
+    public void Display()
+    {
+        Console.WriteLine($"Portfolio Summary:");
+        foreach (var wallet in _wallets)
+        {
+            wallet.Display();
+            Console.WriteLine();
+        }
+        Console.WriteLine($"Total Portfolio Value: {CalculatePortfolioValue():C2}");
     }
 }

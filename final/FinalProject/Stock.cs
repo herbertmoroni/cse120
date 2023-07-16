@@ -2,15 +2,18 @@
 {
     private string _symbol;
     private string _companyName;
-    private int _quantity;
+    private decimal _quantity;
     private decimal _purchasePrice;
     private decimal _currentPrice;
     private decimal _dividendYield;
+    private List<DividendPayment> _dividendPayments;
 
     protected Stock(string symbol, string companyName)
     {
         Symbol = symbol;
         CompanyName = companyName;
+
+        _dividendPayments = new List<DividendPayment>();
     }
 
     public string Symbol
@@ -25,7 +28,7 @@
         set { _companyName = value; }
     }
 
-    public int Quantity
+    public decimal Quantity
     {
         get { return _quantity; }
         set { _quantity = value; }
@@ -60,4 +63,38 @@
     {
         return (_quantity * _dividendYield * _currentPrice) / _purchasePrice;
     }
+
+    public void AddDividendPayment(DividendPayment payment)
+    {
+        _dividendPayments.Add(payment);
+    }
+
+    public void RemoveDividendPayment(DividendPayment payment)
+    {
+        _dividendPayments.Remove(payment);
+    }
+
+    public List<DividendPayment> GetDividendPayments()
+    {
+        return _dividendPayments;
+    }
+
+    public decimal CalculateTotalDividendsReceived()
+    {
+        decimal totalDividends = 0;
+        foreach (var payment in _dividendPayments)
+        {
+            totalDividends += payment.Amount;
+        }
+        return totalDividends;
+    }
+
+
+    public virtual void Display()
+    {
+        decimal totalDividendsReceived = CalculateTotalDividendsReceived();
+        Console.Write($"{CompanyName}\t{Quantity}\t{PurchasePrice:C2}\t{CurrentPrice:C2}\t{totalDividendsReceived:C2}\t");
+    }
+
+
 }
