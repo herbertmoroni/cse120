@@ -1,0 +1,14 @@
+﻿Symbol,CompanyName,Quantity,PurchasePrice,CurrentPrice,DividendYeild,StockType
+PRIO3,Prio,1500,8.20 ,41.52 ,0.00,Brazilian
+BPAC11,BTG,600,24.48 ,31.92 ,0.00,Brazilian
+SIMH3,Simpar,1900,7.44 ,9.01 ,0.00,Brazilian
+VAMO3,Vamos,1200,10.04 ,11.39 ,0.00,Brazilian
+RRRP3,3R Petroleo,600,36.72 ,32.52 ,0.00,Brazilian
+SHUL4,Shulz,3200,3.61 ,6.33 ,0.00,Brazilian
+AMBP3,Ambipar,500,24.92 ,20.98 ,0.00,Brazilian
+MOVI3,Movida,1400,13.86 ,10.36 ,0.00,Brazilian
+RECV3,Reconcavo,800,22.06 ,20.41 ,0.00,Brazilian
+VITT3,Vittia,100,10.76 ,11.55 ,0.00,Brazilian
+VALE,Vale,260,13.91 ,14.29 ,12.49,American
+BAK,Braskem,100,13.29 ,10.72 ,6.25,American
+LUMN,Lumen,400,4.91 ,1.85 ,0.00,American

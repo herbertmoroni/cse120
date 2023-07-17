@@ -3,12 +3,12 @@ using System.Collections.Generic;
 
 public class CsvReader
 {
-    public List<Stock> ReadCsvFile(string path)
+    public List<Stock> ReadStockCsvFile(string path)
     {
         var stocks = new List<Stock>();
         using (var reader = new StreamReader(path))
         {
-            reader.ReadLine(); // Skip header line
+            reader.ReadLine();
             while (!reader.EndOfStream)
             {
                 var line = reader.ReadLine();
@@ -19,9 +19,7 @@ public class CsvReader
                 decimal quantity = decimal.Parse(values[2]);
                 decimal purchasePrice = decimal.Parse(values[3]);
                 decimal currentPrice = decimal.Parse(values[4]);
-                
-                decimal dividendYieldPercentage = decimal.Parse(values[5]);
-                decimal dividendYield = dividendYieldPercentage / 100;
+                decimal dividendYield = decimal.Parse(values[5]);
 
                 string stockType = values[6];
 
@@ -48,4 +46,30 @@ public class CsvReader
 
         return stocks;
     }
+
+    public List<DividendPayment> ReadDividendCsvFile(string path)
+    {
+        var dividendPayments = new List<DividendPayment>();
+        using (var reader = new StreamReader(path))
+        {
+            reader.ReadLine(); 
+            while (!reader.EndOfStream)
+            {
+                var line = reader.ReadLine();
+                var values = line.Split(',');
+
+                DateTime date = DateTime.Parse(values[0]);
+                string stockSymbol = values[1];
+                decimal amount = decimal.Parse(values[2]);
+                decimal numberStocks = decimal.Parse(values[3]);
+
+                var dividendPayment = new DividendPayment(date, amount, numberStocks, stockSymbol);
+
+                dividendPayments.Add(dividendPayment);
+            }
+        }
+
+        return dividendPayments;
+    }
+
 }
