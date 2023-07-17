@@ -93,8 +93,9 @@
     public virtual void Display()
     {
         decimal totalDividendsReceived = CalculateTotalDividendsReceived();
-        Console.Write($"{CompanyName}\t{Quantity}\t{PurchasePrice:C2}\t{CurrentPrice:C2}\t{totalDividendsReceived:C2}\t");
+        Console.WriteLine($"{CompanyName,-25}\t{Quantity,-12}{PurchasePrice:C2, -15}{CurrentPrice:C2, -15}{totalDividendsReceived:C2, -15}");
     }
+
 
 
 }

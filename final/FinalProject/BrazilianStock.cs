@@ -17,7 +17,7 @@
 
     public override void Display()
     {
-        Console.Write($"{CompanyName}\t{Quantity}\tR$ {PurchasePrice:C2}\tR$ {CurrentPrice:C2}\tR$ {CalculateTotalDividendsReceived():C2}\t");
+        Console.Write($"{CompanyName}\t{Quantity}\tR$ {PurchasePrice:F2}\tR$ {CurrentPrice:F2}\tR$ {CalculateTotalDividendsReceived():F2}\t");
         Console.WriteLine();
     }
 }

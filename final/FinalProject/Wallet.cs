@@ -44,7 +44,7 @@
     public void Display()
     {
         Console.WriteLine($"Goal: {_goal}");
-        Console.WriteLine($"{"Stock",-20} {"Quantity",-10} {"Purchase Price",-15} {"Current Price",-15} {"Total Dividends",-15}");
+        Console.WriteLine($"{"Stock",-25} {"Quantity",-12} {"Purchase Price",-15} {"Current Price",-15} {"Total Dividends",-15}");
         foreach (var stock in _stocks)
         {
             stock.Display();

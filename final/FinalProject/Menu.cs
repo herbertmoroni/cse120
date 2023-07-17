@@ -15,11 +15,11 @@
         {
             Console.WriteLine("Dividend-Based Stock Portfolio System");
             Console.WriteLine("-------------------------------------");
-            Console.WriteLine("1. Add Stock");
-            Console.WriteLine("2. Update Stock Price");
-            Console.WriteLine("3. Update Dividend Data");
-            Console.WriteLine("4. View Dividend Performance");
-            Console.WriteLine("5. Generate Reports");
+            Console.WriteLine("1. Display Dividends Stocks");
+            Console.WriteLine("2. Display Growth Stocks");
+            Console.WriteLine("3. View Dividend Performance");
+            Console.WriteLine("4. Suggest Best Dividend Stock to Buy Now");
+            Console.WriteLine("5. Display Portfolio");
             Console.WriteLine("6. Exit");
             Console.WriteLine();
 
@@ -31,19 +31,19 @@
             switch (choice)
             {
                 case "1":
-                    AddStock();
+                    DisplayDividendsStocks();
                     break;
                 case "2":
-                    UpdateStockPrice();
+                    DisplayGrowthStocks();
                     break;
                 case "3":
-                    UpdateDividendData();
-                    break;
-                case "4":
                     ViewDividendPerformance();
                     break;
+                case "4":
+                    SuggestBestDividendStockToBuyNow();
+                    break;
                 case "5":
-                    GenerateReports();
+                    DisplayPortfolio();
                     break;
                 case "6":
                     exit = true;
@@ -57,140 +57,35 @@
         }
     }
 
-    private void AddStock()
+    private void DisplayDividendsStocks()
     {
-        Wallet selectedWallet = SelectWallet();
-
-        if (selectedWallet == null)
-        {
-            Console.WriteLine("No wallet found with the provided goal. Stock not added.");
-            return;
-        }
-
-        Console.WriteLine("Add Stock");
-        Console.Write("Enter the symbol: ");
-        string symbol = Console.ReadLine();
-
-        Console.Write("Enter the company name: ");
-        string companyName = Console.ReadLine();
-
-        Console.Write("Enter the quantity: ");
-        decimal quantity = decimal.Parse(Console.ReadLine());
-
-        Console.Write("Enter the purchase price: ");
-        decimal purchasePrice = decimal.Parse(Console.ReadLine());
-
-        Console.Write("Enter the current price: ");
-        decimal currentPrice = decimal.Parse(Console.ReadLine());
-
-        Console.Write("Enter the dividend yield: ");
-        decimal dividendYield = decimal.Parse(Console.ReadLine());
-
-        Console.WriteLine("Select the type of stock:");
-        Console.WriteLine("1. Brazilian Stock");
-        Console.WriteLine("2. American Stock");
-        Console.Write("Enter your choice: ");
-        string stockTypeChoice = Console.ReadLine();
-
-        Stock stock;
-
-        switch (stockTypeChoice)
-        {
-            case "1":
-                stock = new BrazilianStock(symbol, companyName);
-                break;
-            case "2":
-                stock = new AmericanStock(symbol, companyName);
-                break;
-            default:
-                Console.WriteLine("Invalid stock type choice. Stock not added.");
-                return;
-        }
-
-        stock.Quantity = quantity;
-        stock.PurchasePrice = purchasePrice;
-        stock.CurrentPrice = currentPrice;
-        stock.DividendYield = dividendYield;
-
-        selectedWallet.AddStock(stock);
-        Console.WriteLine("Stock added successfully.");
+        Console.WriteLine("Dividends Stocks: ");
+        DisplayStocks(_user.Portfolio.GetWallets().FirstOrDefault(w => w.Goal == "Dividends"));
     }
 
-    private void UpdateStockPrice()
+    private void DisplayGrowthStocks()
     {
-        Console.WriteLine("Update Stock Price");
-
-        Wallet selectedWallet = SelectWallet();
-        if (selectedWallet == null)
-        {
-            Console.WriteLine("No wallet found with the provided goal.");
-            return;
-        }
-
-        Console.Write("Enter the symbol of the stock to update: ");
-        string symbol = Console.ReadLine();
-
-        Stock stock = FindStock(selectedWallet, symbol);
-        if (stock != null)
-        {
-            Console.Write("Enter the new price: ");
-            decimal newPrice = decimal.Parse(Console.ReadLine());
-            stock.CurrentPrice = newPrice;
-            Console.WriteLine("Stock price updated successfully.");
-        }
-        else
-        {
-            Console.WriteLine("Stock not found.");
-        }
+        Console.WriteLine("Growth Stocks: ");
+        DisplayStocks(_user.Portfolio.GetWallets().FirstOrDefault(w => w.Goal == "Growth"));
     }
 
-    private void UpdateDividendData()
+    private void DisplayStocks(Wallet wallet)
     {
-        Console.WriteLine("Update Dividend Data");
-
-        Wallet selectedWallet = SelectWallet();
-        if (selectedWallet == null)
+        if (wallet != null)
         {
-            Console.WriteLine("No wallet found with the provided goal.");
-            return;
-        }
-
-        Console.Write("Enter the symbol of the stock to update: ");
-        string symbol = Console.ReadLine();
-
-        Stock stock = FindStock(selectedWallet, symbol);
-        if (stock != null)
-        {
-            Console.Write("Enter the dividend payment amount: ");
-            decimal amount = decimal.Parse(Console.ReadLine());
-
-            Console.Write("Enter the dividend payment date (yyyy-MM-dd): ");
-            DateTime paymentDate = DateTime.Parse(Console.ReadLine());
-
-            Console.Write("Enter the number of stocks: ");
-            decimal numberOfStocks = decimal.Parse(Console.ReadLine());
-
-            DividendPayment dividendPayment = new DividendPayment
+            foreach (var stock in wallet.GetStocks())
             {
-                Amount = amount,
-                PaymentDate = paymentDate,
-                NumberOfStocks = numberOfStocks
-            };
-
-            stock.AddDividendPayment(dividendPayment);
-
-            Console.WriteLine("Dividend data updated successfully.");
+                Console.WriteLine($"{stock.Symbol} - {stock.CompanyName}");
+            }
         }
         else
         {
-            Console.WriteLine("Stock not found.");
+            Console.WriteLine("No stocks found.");
         }
     }
 
     private void ViewDividendPerformance()
     {
-        Console.WriteLine("View Dividend Performance");
-
         Wallet selectedWallet = SelectWallet();
         if (selectedWallet == null)
         {
@@ -204,11 +99,11 @@
         Stock stock = FindStock(selectedWallet, symbol);
         if (stock != null)
         {
-            Console.WriteLine("Dividend Performance for Stock: " + stock.CompanyName);
-            Console.WriteLine("Dividend Yield: " + stock.DividendYield);
-            Console.WriteLine("Yield on Cost: " + stock.CalculateYieldOnCost());
-            Console.WriteLine("Dividend Percentage: " + stock.CalculateDividendPercentage());
-            Console.WriteLine("Total Dividends Received: " + stock.CalculateTotalDividendsReceived());
+            Console.WriteLine($"Dividend Performance for Stock: {stock.CompanyName}");
+            Console.WriteLine($"Dividend Yield: {stock.DividendYield:F2}");
+            Console.WriteLine($"Yield on Cost: {stock.CalculateYieldOnCost():F2}");
+            Console.WriteLine($"Dividend Percentage: {stock.CalculateDividendPercentage():F2}");
+            Console.WriteLine($"Total Dividends Received: {stock.CalculateTotalDividendsReceived():F2}");
         }
         else
         {
@@ -216,10 +111,28 @@
         }
     }
 
-    private void GenerateReports()
+    private void SuggestBestDividendStockToBuyNow()
     {
-        Console.WriteLine("Generate Reports");
-        _user.Portfolio.Display();
+        SuggestBestStock("American");
+        SuggestBestStock("Brazilian");
+    }
+
+    private void SuggestBestStock(string stockType)
+    {
+        List<Stock> allStocks = _user.Portfolio.GetWallets()
+            .SelectMany(w => w.GetStocks())
+            .Where(s => s.GetType().Name == stockType + "Stock")
+            .ToList();
+
+        if (!allStocks.Any())
+        {
+            Console.WriteLine($"No {stockType} stocks found.");
+            return;
+        }
+
+        Stock bestStock = allStocks.OrderByDescending(s => s.DividendYield).First();
+
+        Console.WriteLine($"Suggested {stockType} stock to buy: {bestStock.Symbol} ({bestStock.CompanyName})");
     }
 
     private Wallet SelectWallet()
@@ -240,5 +153,12 @@
     private Stock FindStock(Wallet wallet, string symbol)
     {
         return wallet.GetStocks().FirstOrDefault(s => s.Symbol == symbol);
+    }
+
+
+    private void DisplayPortfolio()
+    {
+        Console.WriteLine("Portfolio: ");
+        _user.Portfolio.Display();
     }
 }
